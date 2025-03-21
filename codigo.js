@@ -79,7 +79,7 @@ sumbit.addEventListener("click", (e) =>{
         hayError = true;
     }
     else if(password.value != ""){
-        if(regex.test(password) || password.value.length > 8){
+        if(regex.test(password)){
             hayError = false;
             span3.innerHTML = "";
         }
