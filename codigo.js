@@ -3,39 +3,13 @@ const name = document.getElementById("name");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const password2 = document.getElementById("password-2");
-// const icon1 = document.getElementById("bx1");
-// const icon2 = document.querySegetElementByIdlector("bx2");
 
 span1 = document.getElementById("name-er");
 span2 = document.getElementById("email-er");
 span3 = document.getElementById("pass-er");
 span4 = document.getElementById("pass2-er");
 
-//Ocultar / mostar contraseña
 
-// icon1.addEventListener("click", e => {
-//     if(password.type === "password"){
-//         password.type = "text";
-//         icon1.classList.remove('bx-show');
-//         icon1.classList.add('bx-hide');
-//     } else {
-//         password.type = "passowrd";
-//         icon1.classList.add('bx-show');
-//         icon1.classList.remove('bx-hide');
-//     }
-// })
-
-// icon2.addEventListener("click", e => {
-//     if(password2.type === "password"){
-//         password2.type = "text";
-//         icon2.classList.remove('bx-show');
-//         icon2.classList.add('bx-hide');
-//     } else {
-//         password.type = "passowrd";
-//         icon2.classList.add('bx-show');
-//         icon2.classList.remove('bx-hide');
-//     }
-// })
 
 
 let mensajeErr, nameOk, emailOk;
@@ -86,6 +60,7 @@ password2.addEventListener("input", () => {
 })
 
 sumbit.addEventListener("click", (e) =>{
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     let hayError = false;
     //Vaidación nombre
     if(name.value == ""){
@@ -103,6 +78,16 @@ sumbit.addEventListener("click", (e) =>{
         span3.innerHTML = mensajeErr;
         hayError = true;
     }
+    else if(password.value != ""){
+        if(regex.test(password) || password.value.length > 8){
+            hayError = false;
+            span3.innerHTML = "";
+        }
+        else {
+            hayError = false;
+            span3.innerHTML = "La contraseña es inválida";
+        }
+    }
     if(password2.value == ""){
         mensajeErr = "El campo esta vacío";
         span4.innerHTML = mensajeErr;
@@ -118,4 +103,35 @@ sumbit.addEventListener("click", (e) =>{
 
     if(hayError || !nameOk || !emailOk){e.preventDefault();}
 });
+
+
+const icon1 = document.getElementById("bx1");
+const icon2 = document.getElementById("bx2");
+
+
+icon1.addEventListener("click", (e) => {
+    console.log(password)
+    if(password.type === "password"){
+        console.log("ES PASS");
+        password.type = "text";
+        icon1.classList.remove('bx-show');
+        icon1.classList.add('bx-hide');
+    } else {
+        password.type = "password";
+        icon1.classList.add('bx-show');
+        icon1.classList.remove('bx-hide');
+    }
+})
+
+icon2.addEventListener("click", (e) => {
+    if(password2.type === "password"){
+        password2.type = "text";
+        icon2.classList.remove('bx-show');
+        icon2.classList.add('bx-hide');
+    } else {
+        password2.type = "password";
+        icon2.classList.add('bx-show');
+        icon2.classList.remove('bx-hide');
+    }
+})
 
