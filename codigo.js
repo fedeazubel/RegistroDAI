@@ -34,8 +34,8 @@ email.addEventListener("input", () =>{
         mensajeErr = "";
         span2.innerHTML = mensajeErr;
     }
-    if(email.value.indexOf("@gmail.com") == -1) {
-        mensajeErr = "El email debe ser del formato @gmail.com";
+    if(email.value.indexOf("@") == -1) {
+        mensajeErr = "El email es inválido";
         span2.innerHTML = mensajeErr;
         emailOk = false;
     }
@@ -85,7 +85,7 @@ sumbit.addEventListener("click", (e) =>{
         }
         else {
             hayError = false;
-            span3.innerHTML = "La contraseña es inválida";
+            span3.innerHTML = "La contraseña es inválida (mínimo 8 caracteres, al menos un número y una letra";
         }
     }
     if(password2.value == ""){
